@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <app-header></app-header>
+    <app-content></app-content>
+    <app-footer></app-footer>
+  </div>
+
+  <div id="app2">
+    <app-header></app-header>
+    <app-footer></app-footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
+  <script>
+    // 전역 컴포넌트 생성
+    // Vue.component('컴포넌트 이름', 컴포넌트 내용);
+    Vue.component('app-header', {
+      template: '<h1>Header</h1>'
+    });
+    Vue.component('app-content', {
+      template: '<h3>content</h3>'
+    })
+
+    // 지역 컴포넌트 생성
+    new Vue({
+      el: '#app', 
+      components: {
+        // '키' : '값'
+        // '컴포넌트 이름' : 컴포넌트 내용
+        'app-footer' : {
+          template: '<footer>footer</footer>'
+        }
+      }
+    })
+
+    // 전역 컴포넌트인 header는 모든 인스턴스에서 사용이 가능하지만
+    // 지역 컴포넌트인 footer는 인스턴스마다 새로 생성해주어야 한다.
+    new Vue({
+      el: '#app2',
+      components: {
+        'app-footer' : {
+          template: '<footer>footer</footer>'
+        }    
+      }
+    })
+  </script>
+</body>
+</html>
